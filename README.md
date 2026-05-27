@@ -25,7 +25,3 @@ If you previously enabled a different entry (e.g. `three-blind-mice-app` or a pa
 2. **Product → Show Build Folder in Finder** → open `Products/Release`.
 3. Zip **`Three Blind Mice.app`** and send the zip.
 4. Recipients: unzip, move to Applications, **right-click → Open** once, then grant Accessibility for **Three Blind Mice**.
-
-## Local reference code (not in git)
-
-If you keep [LinearMouse](https://github.com/linearmouse/linearmouse) or Mos clones nearby for inspiration, place them next to this repo as `linearmouse-main/` and `Mos-master/` — they are gitignored.
