@@ -2,23 +2,30 @@
 
 macOS menu bar utility that remaps mouse scroll and buttons to keyboard-style navigation actions.
 
-## Project layout
+## Build and run (Xcode)
 
-| Path | Purpose |
-|------|---------|
-| `three-blind-mice-app/` | **The app** — open `ThreeBlindMice.xcodeproj` here |
-| `linearmouse-main/` | Local reference only (not shipped; ignored by git) |
-| `Mos-master/` | Local reference only (not shipped; ignored by git) |
+Accessibility permission only works reliably when the app has a **bundle identifier**.
 
-## Build and run
+1. Open **`ThreeBlindMice.xcodeproj`** in this repo (not `Package.swift` alone).
+2. Select scheme **Three Blind Mice**.
+3. Press **Run**.
+4. In **System Settings → Privacy & Security → Accessibility**, enable **Three Blind Mice**.
+5. **Quit** the app completely (menu bar → Quit), then run again from Xcode.
+6. The menu bar icon should reflect enabled/disabled state (sunglasses).
 
-See [three-blind-mice-app/README.md](three-blind-mice-app/README.md).
+If you previously enabled a different entry (e.g. `three-blind-mice-app` or a path under `.build/`), remove those stale entries and enable **Three Blind Mice** only.
 
-Open **`three-blind-mice-app/ThreeBlindMice.xcodeproj`** in Xcode, run the **Three Blind Mice** scheme, then grant **Accessibility** permission for **Three Blind Mice** in System Settings.
+## Swift Package (development only)
+
+`swift run` builds a bare executable without a bundle ID. macOS often will not apply Accessibility permission correctly. Use the Xcode project above for testing remapping.
 
 ## Share a build with others
 
-1. Xcode → **Product → Build** (Release recommended).
-2. **Product → Show Build Folder in Finder** → `Products/Release/Three Blind Mice.app`
-3. Zip the `.app` and send it.
-4. Recipients: unzip, move to Applications, **right-click → Open** the first time, then enable Accessibility for the app.
+1. **Product → Build** (use **Release** for sharing).
+2. **Product → Show Build Folder in Finder** → open `Products/Release`.
+3. Zip **`Three Blind Mice.app`** and send the zip.
+4. Recipients: unzip, move to Applications, **right-click → Open** once, then grant Accessibility for **Three Blind Mice**.
+
+## Local reference code (not in git)
+
+If you keep [LinearMouse](https://github.com/linearmouse/linearmouse) or Mos clones nearby for inspiration, place them next to this repo as `linearmouse-main/` and `Mos-master/` — they are gitignored.

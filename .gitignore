@@ -10,3 +10,19 @@ Mos-master/
 /*.png
 /*.jpg
 /*.jpeg
+
+# Swift Package Manager
+.build/
+Packages/
+.swiftpm/configuration/registries.json
+.swiftpm/xcode/package.xcworkspace/contents.xcworkspacedata
+.swiftpm/xcode/xcuserdata/
+
+# Xcode
+DerivedData/
+*.xccheckout
+
+# Secrets
+.netrc
+*.p12
+*.mobileprovision
