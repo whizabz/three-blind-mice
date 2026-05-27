@@ -1,0 +1,326 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		44081B0A2FC6E9CE003E6872 /* three-blind-mice.icon in Resources */ = {isa = PBXBuildFile; fileRef = 44081B092FC6E9CE003E6872 /* three-blind-mice.icon */; };
+		B1000001 /* three_blind_mice_app.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000001 /* three_blind_mice_app.swift */; };
+		B1000002 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000002 /* AppState.swift */; };
+		B1000003 /* AccessibilityPermissionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000003 /* AccessibilityPermissionService.swift */; };
+		B1000004 /* MenuBarContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000004 /* MenuBarContentView.swift */; };
+		B1000005 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000005 /* SettingsView.swift */; };
+		B1000006 /* MappingModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000006 /* MappingModels.swift */; };
+		B1000007 /* ConfigStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000007 /* ConfigStore.swift */; };
+		B1000008 /* ActionExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000008 /* ActionExecutor.swift */; };
+		B1000009 /* InputRemappingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000009 /* InputRemappingService.swift */; };
+		B1000011 /* KeyCodeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000013 /* KeyCodeTable.swift */; };
+		B1000012 /* KeyboardShortcut.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000014 /* KeyboardShortcut.swift */; };
+		B1000013 /* RemappingSoundService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000015 /* RemappingSoundService.swift */; };
+		B1000014 /* remapping-on.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F1000016 /* remapping-on.mp3 */; };
+		B1000015 /* remapping-off.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F1000017 /* remapping-off.mp3 */; };
+		B1000017 /* AppActivationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000019 /* AppActivationController.swift */; };
+		B1000018 /* PointerLockManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000020 /* PointerLockManager.swift */; };
+		B1000019 /* SettingsWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000021 /* SettingsWindowController.swift */; };
+		B1000020 /* KeyboardNavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1000022 /* KeyboardNavigationHelper.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		44081B092FC6E9CE003E6872 /* three-blind-mice.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = "three-blind-mice.icon"; sourceTree = "<group>"; };
+		E1000001 /* Three Blind Mice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Three Blind Mice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1000001 /* three_blind_mice_app.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = three_blind_mice_app.swift; sourceTree = "<group>"; };
+		F1000002 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		F1000003 /* AccessibilityPermissionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccessibilityPermissionService.swift; sourceTree = "<group>"; };
+		F1000004 /* MenuBarContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuBarContentView.swift; sourceTree = "<group>"; };
+		F1000005 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F1000006 /* MappingModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappingModels.swift; sourceTree = "<group>"; };
+		F1000007 /* ConfigStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigStore.swift; sourceTree = "<group>"; };
+		F1000008 /* ActionExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionExecutor.swift; sourceTree = "<group>"; };
+		F1000009 /* InputRemappingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputRemappingService.swift; sourceTree = "<group>"; };
+		F1000010 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1000011 /* ThreeBlindMice.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ThreeBlindMice.entitlements; sourceTree = "<group>"; };
+		F1000013 /* KeyCodeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCodeTable.swift; sourceTree = "<group>"; };
+		F1000014 /* KeyboardShortcut.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardShortcut.swift; sourceTree = "<group>"; };
+		F1000015 /* RemappingSoundService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemappingSoundService.swift; sourceTree = "<group>"; };
+		F1000016 /* remapping-on.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "remapping-on.mp3"; sourceTree = "<group>"; };
+		F1000017 /* remapping-off.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "remapping-off.mp3"; sourceTree = "<group>"; };
+		F1000019 /* AppActivationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppActivationController.swift; sourceTree = "<group>"; };
+		F1000020 /* PointerLockManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointerLockManager.swift; sourceTree = "<group>"; };
+		F1000021 /* SettingsWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsWindowController.swift; sourceTree = "<group>"; };
+		F1000022 /* KeyboardNavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardNavigationHelper.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C1000002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		G1000001 = {
+			isa = PBXGroup;
+			children = (
+				G1000002 /* App */,
+				G1000003 /* Sources */,
+				G1000005 /* Sounds */,
+				G1000004 /* Products */,
+				44081B092FC6E9CE003E6872 /* three-blind-mice.icon */,
+			);
+			sourceTree = "<group>";
+		};
+		G1000002 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				F1000010 /* Info.plist */,
+				F1000011 /* ThreeBlindMice.entitlements */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		G1000003 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				F1000001 /* three_blind_mice_app.swift */,
+				F1000002 /* AppState.swift */,
+				F1000003 /* AccessibilityPermissionService.swift */,
+				F1000004 /* MenuBarContentView.swift */,
+				F1000005 /* SettingsView.swift */,
+				F1000006 /* MappingModels.swift */,
+				F1000007 /* ConfigStore.swift */,
+				F1000008 /* ActionExecutor.swift */,
+				F1000009 /* InputRemappingService.swift */,
+				F1000013 /* KeyCodeTable.swift */,
+				F1000014 /* KeyboardShortcut.swift */,
+				F1000015 /* RemappingSoundService.swift */,
+				F1000019 /* AppActivationController.swift */,
+				F1000022 /* KeyboardNavigationHelper.swift */,
+				F1000020 /* PointerLockManager.swift */,
+				F1000021 /* SettingsWindowController.swift */,
+			);
+			name = Sources;
+			path = "Sources/three-blind-mice-app";
+			sourceTree = "<group>";
+		};
+		G1000004 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E1000001 /* Three Blind Mice.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		G1000005 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				F1000016 /* remapping-on.mp3 */,
+				F1000017 /* remapping-off.mp3 */,
+			);
+			name = Sounds;
+			path = Resources/Sounds;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		T1000001 /* Three Blind Mice */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = X1000003 /* Build configuration list for PBXNativeTarget "Three Blind Mice" */;
+			buildPhases = (
+				C1000001 /* Sources */,
+				C1000002 /* Frameworks */,
+				C1000003 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Three Blind Mice";
+			productName = "Three Blind Mice";
+			productReference = E1000001 /* Three Blind Mice.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		P1000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					T1000001 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = X1000001 /* Build configuration list for PBXProject "ThreeBlindMice" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = G1000001;
+			productRefGroup = G1000004 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				T1000001 /* Three Blind Mice */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C1000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1000014 /* remapping-on.mp3 in Resources */,
+				44081B0A2FC6E9CE003E6872 /* three-blind-mice.icon in Resources */,
+				B1000015 /* remapping-off.mp3 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C1000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B1000001 /* three_blind_mice_app.swift in Sources */,
+				B1000002 /* AppState.swift in Sources */,
+				B1000003 /* AccessibilityPermissionService.swift in Sources */,
+				B1000004 /* MenuBarContentView.swift in Sources */,
+				B1000005 /* SettingsView.swift in Sources */,
+				B1000006 /* MappingModels.swift in Sources */,
+				B1000007 /* ConfigStore.swift in Sources */,
+				B1000008 /* ActionExecutor.swift in Sources */,
+				B1000009 /* InputRemappingService.swift in Sources */,
+				B1000011 /* KeyCodeTable.swift in Sources */,
+				B1000012 /* KeyboardShortcut.swift in Sources */,
+				B1000013 /* RemappingSoundService.swift in Sources */,
+				B1000017 /* AppActivationController.swift in Sources */,
+				B1000020 /* KeyboardNavigationHelper.swift in Sources */,
+				B1000018 /* PointerLockManager.swift in Sources */,
+				B1000019 /* SettingsWindowController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		X1000002 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		X1000004 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				MACOSX_DEPLOYMENT_TARGET = 14.0;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		X1000005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "three-blind-mice";
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = App/ThreeBlindMice.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.threeblindmice;
+				PRODUCT_NAME = "Three Blind Mice";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		X1000006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "three-blind-mice";
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = App/ThreeBlindMice.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = App/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 0.1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.threeblindmice;
+				PRODUCT_NAME = "Three Blind Mice";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		X1000001 /* Build configuration list for PBXProject "ThreeBlindMice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				X1000002 /* Debug */,
+				X1000004 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		X1000003 /* Build configuration list for PBXNativeTarget "Three Blind Mice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				X1000005 /* Debug */,
+				X1000006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = P1000001 /* Project object */;
+}

@@ -1,0 +1,12 @@
+.DS_Store
+*.xcuserstate
+xcuserdata/
+
+# Local reference copies (not part of this app)
+linearmouse-main/
+Mos-master/
+
+# Scratch / design exports at repo root only
+/*.png
+/*.jpg
+/*.jpeg
