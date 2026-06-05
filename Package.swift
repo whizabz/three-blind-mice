@@ -12,5 +12,9 @@ let package = Package(
         .executableTarget(
             name: "three-blind-mice-app"
         ),
+        .testTarget(
+            name: "three-blind-mice-appTests",
+            dependencies: ["three-blind-mice-app"]
+        ),
     ]
 )

@@ -4,18 +4,44 @@ struct SettingsView: View {
     @EnvironmentObject private var appState: AppState
 
     var body: some View {
-        ScrollView {
+        TabView {
             Form {
                 generalSection
+            }
+            .formStyle(.grouped)
+            .padding(16)
+            .tabItem {
+                Label("General", systemImage: "gearshape")
+            }
+
+            Form {
                 toggleShortcutSection
+            }
+            .formStyle(.grouped)
+            .padding(16)
+            .tabItem {
+                Label("Shortcut", systemImage: "command")
+            }
+
+            Form {
                 accessibilitySection
+            }
+            .formStyle(.grouped)
+            .padding(16)
+            .tabItem {
+                Label("Accessibility", systemImage: "hand.raised")
+            }
+
+            Form {
                 mappingsSection
             }
             .formStyle(.grouped)
-            .padding(20)
-            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(16)
+            .tabItem {
+                Label("Mappings", systemImage: "computermouse")
+            }
         }
-        .frame(minWidth: 520, idealWidth: 560)
+        .frame(minWidth: 520, idealWidth: 560, minHeight: 360)
     }
 
     // MARK: - Sections
@@ -41,7 +67,7 @@ struct SettingsView: View {
                 Label(
                     appState.isEventTapActive
                         ? "Remapping engine is running."
-                        : "Permission granted, but the event tap is not running. Use Refresh below.",
+                        : "Permission granted, but the event tap is not running. Use the Accessibility tab.",
                     systemImage: appState.isEventTapActive ? "checkmark.circle.fill" : "exclamationmark.triangle.fill"
                 )
                 .foregroundStyle(appState.isEventTapActive ? .green : .orange)
@@ -51,10 +77,59 @@ struct SettingsView: View {
                         : "Remapping engine is not running"
                 )
             }
-        } header: {
-            Text("General")
         } footer: {
             keyboardNavigationFooter
+        }
+
+        Section {
+            Picker("Scroll navigation", selection: Binding(
+                get: { appState.config.scrollNavigationStyle },
+                set: { appState.setScrollNavigationStyle($0) }
+            )) {
+                Text("Tab / Shift+Tab").tag(ScrollNavigationStyle.tabNavigation)
+                Text("Left / Right Arrow").tag(ScrollNavigationStyle.arrowNavigation)
+                Text("Custom").tag(ScrollNavigationStyle.custom)
+            }
+            .accessibilityHint(
+                "Choose how scroll up and down are remapped. Use Left / Right Arrow with VoiceOver Quick Nav if enabled."
+            )
+
+            if appState.config.scrollNavigationStyle == .custom {
+                Picker("Scroll up", selection: scrollActionBinding(.scrollUp)) {
+                    ForEach(NavigationActionKind.scrollActionOptions, id: \.self) { kind in
+                        Text(displayName(for: kind)).tag(kind)
+                    }
+                }
+
+                Picker("Scroll down", selection: scrollActionBinding(.scrollDown)) {
+                    ForEach(NavigationActionKind.scrollActionOptions, id: \.self) { kind in
+                        Text(displayName(for: kind)).tag(kind)
+                    }
+                }
+            }
+
+            Toggle("Hold forward button for Tab navigation", isOn: Binding(
+                get: { appState.config.holdForwardForTabScroll },
+                set: { appState.setHoldForwardForTabScroll($0) }
+            ))
+            .accessibilityHint(
+                "While the forward mouse button is held, scroll uses Shift+Tab and Tab regardless of the scroll navigation setting above."
+            )
+
+            Toggle("Invert scroll for remapping", isOn: Binding(
+                get: { appState.config.invertScrollForRemapping },
+                set: { appState.setInvertScrollForRemapping($0) }
+            ))
+            .accessibilityHint(
+                "Swaps which scroll direction triggers scroll up versus scroll down actions. Does not change scrolling outside this app."
+            )
+        } header: {
+            Text("Scroll Navigation")
+        } footer: {
+            Text(
+                "Invert scroll for remapping if navigation feels backwards with your mouse scroll settings. "
+                + "Hold the forward mouse button while scrolling to temporarily use Tab and Shift+Tab."
+            )
         }
     }
 
@@ -90,8 +165,6 @@ struct SettingsView: View {
             LabeledContent("Current shortcut") {
                 Text(appState.config.toggleRemappingShortcut.displayLabel)
             }
-        } header: {
-            Text("Toggle Remapping Shortcut")
         } footer: {
             Text("Default is Control+Option+M.")
         }
@@ -121,6 +194,21 @@ struct SettingsView: View {
                     .lineLimit(3)
             }
 
+            LabeledContent("Code signing") {
+                Text(diagnostics.codeSigningSummary)
+                    .textSelection(.enabled)
+                    .foregroundStyle(diagnostics.permissionResetsOnRebuild ? .orange : .primary)
+            }
+
+            if diagnostics.permissionResetsOnRebuild {
+                Text(
+                    "This build is ad hoc signed, so macOS treats each rebuild as a new app and Accessibility permission will not stick. "
+                    + "Copy App/DevelopmentTeam.xcconfig.example to App/DevelopmentTeam.xcconfig, set your Team ID, then rebuild."
+                )
+                .foregroundStyle(.orange)
+                .font(.callout)
+            }
+
             Button("Grant Permission") {
                 appState.requestAccessibilityPermissionPrompt()
             }
@@ -132,8 +220,6 @@ struct SettingsView: View {
             Button("Refresh Permission Status") {
                 appState.refreshAccessibilityPermission()
             }
-        } header: {
-            Text("Accessibility")
         }
     }
 
@@ -145,15 +231,29 @@ struct SettingsView: View {
                     get: { appState.config.activeProfile.action(for: trigger).kind },
                     set: { appState.setAction($0, for: trigger) }
                 )) {
-                    ForEach(NavigationActionKind.presetOptions, id: \.self) { kind in
+                    ForEach(actionOptions(for: trigger), id: \.self) { kind in
                         Text(displayName(for: kind)).tag(kind)
                     }
                 }
             }
-        } header: {
-            Text("Mouse Mappings")
         } footer: {
             Text("Scroll and button mappings apply globally while remapping is enabled.")
+        }
+    }
+
+    private func scrollActionBinding(_ trigger: InputTrigger) -> Binding<NavigationActionKind> {
+        Binding(
+            get: { appState.config.activeProfile.action(for: trigger).kind },
+            set: { appState.setAction($0, for: trigger) }
+        )
+    }
+
+    private func actionOptions(for trigger: InputTrigger) -> [NavigationActionKind] {
+        switch trigger {
+        case .scrollUp, .scrollDown:
+            return NavigationActionKind.scrollActionOptions
+        default:
+            return NavigationActionKind.presetOptions
         }
     }
 
@@ -207,6 +307,8 @@ struct SettingsView: View {
         switch kind {
         case .tab: return "Tab"
         case .shiftTab: return "Shift + Tab"
+        case .voiceOverPreviousItem: return "VoiceOver Previous Item (⌃⌥←)"
+        case .voiceOverNextItem: return "VoiceOver Next Item (⌃⌥→)"
         case .enter: return "Enter / Return"
         case .space: return "Space"
         case .escape: return "Escape"

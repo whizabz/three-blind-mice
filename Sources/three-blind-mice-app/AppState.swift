@@ -108,6 +108,21 @@ final class AppState: ObservableObject {
         config.lockPointerPosition = enabled
     }
 
+    func setScrollNavigationStyle(_ style: ScrollNavigationStyle) {
+        var profile = config.activeProfile
+        style.applyToProfile(&profile)
+        config.activeProfile = profile
+        config.scrollNavigationStyle = style
+    }
+
+    func setHoldForwardForTabScroll(_ enabled: Bool) {
+        config.holdForwardForTabScroll = enabled
+    }
+
+    func setInvertScrollForRemapping(_ enabled: Bool) {
+        config.invertScrollForRemapping = enabled
+    }
+
     func syncPointerLock() {
         guard config.isEnabled, config.lockPointerPosition else {
             PointerLockManager.shared.deactivateLock()
@@ -133,6 +148,9 @@ final class AppState: ObservableObject {
         }
         profile.setAction(action, for: trigger)
         config.activeProfile = profile
+        if trigger == .scrollUp || trigger == .scrollDown {
+            config.scrollNavigationStyle = ScrollNavigationStyle.infer(from: profile)
+        }
     }
 
     private func saveConfig() {

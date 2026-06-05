@@ -15,6 +15,7 @@ final class InputRemappingService: NSObject {
     private var configProvider: () -> AppConfig
     private var toggleShortcutProvider: () -> Shortcut
     private var onToggleRemapping: (() -> Void)?
+    private var forwardButtonHeld = false
 
     private(set) var isEventTapActive = false
     var onEventTapActiveChanged: ((Bool) -> Void)?
@@ -67,6 +68,7 @@ final class InputRemappingService: NSObject {
 
     func stop() {
         lock.lock()
+        forwardButtonHeld = false
         guard let thread = workerThread else {
             lock.unlock()
             setEventTapActive(false)
@@ -151,6 +153,7 @@ final class InputRemappingService: NSObject {
             (1 << CGEventType.leftMouseDown.rawValue) |
             (1 << CGEventType.rightMouseDown.rawValue) |
             (1 << CGEventType.otherMouseDown.rawValue) |
+            (1 << CGEventType.otherMouseUp.rawValue) |
             pointerMovementMask()
 
         let callback: CGEventTapCallBack = { _, type, event, userInfo in
@@ -205,7 +208,13 @@ final class InputRemappingService: NSObject {
             return Unmanaged.passUnretained(event)
         }
 
-        // Let the settings panel scroll natively when the pointer is over its window.
+        if type == .otherMouseUp, mouseButtonNumber(from: event) == 4 {
+            lock.lock()
+            forwardButtonHeld = false
+            lock.unlock()
+            return Unmanaged.passUnretained(event)
+        }
+
         if type == .scrollWheel,
            SettingsWindowController.shared.shouldPassThroughScroll(at: event.location) {
             return Unmanaged.passUnretained(event)
@@ -216,11 +225,24 @@ final class InputRemappingService: NSObject {
             return nil
         }
 
-        guard let trigger = triggerFrom(event: event, type: type) else {
+        if type == .otherMouseDown,
+           mouseButtonNumber(from: event) == 4,
+           config.holdForwardForTabScroll {
+            lock.lock()
+            forwardButtonHeld = true
+            lock.unlock()
+            return nil
+        }
+
+        guard let trigger = triggerFrom(event: event, type: type, config: config) else {
             return Unmanaged.passUnretained(event)
         }
 
-        let action = config.activeProfile.action(for: trigger)
+        lock.lock()
+        let forwardHeld = forwardButtonHeld
+        lock.unlock()
+
+        let action = config.scrollAction(for: trigger, forwardButtonHeld: forwardHeld)
         guard action.kind != .noAction else {
             return Unmanaged.passUnretained(event)
         }
@@ -229,24 +251,16 @@ final class InputRemappingService: NSObject {
         return nil
     }
 
-    private func triggerFrom(event: CGEvent, type: CGEventType) -> InputTrigger? {
+    private func triggerFrom(event: CGEvent, type: CGEventType, config: AppConfig) -> InputTrigger? {
         switch type {
         case .scrollWheel:
-            let deltaY = scrollDeltaY(from: event)
-            if deltaY > 0 {
-                return .scrollUp
-            }
-            if deltaY < 0 {
-                return .scrollDown
-            }
-            return nil
+            return config.scrollTrigger(forDeltaY: scrollDeltaY(from: event))
         case .leftMouseDown:
             return .leftClick
         case .rightMouseDown:
             return .rightClick
         case .otherMouseDown:
-            let button = event.getIntegerValueField(.mouseEventButtonNumber)
-            switch button {
+            switch mouseButtonNumber(from: event) {
             case 2: return .middleClick
             case 3: return .backButton
             case 4: return .forwardButton
@@ -255,6 +269,10 @@ final class InputRemappingService: NSObject {
         default:
             return nil
         }
+    }
+
+    private func mouseButtonNumber(from event: CGEvent) -> Int64 {
+        event.getIntegerValueField(.mouseEventButtonNumber)
     }
 
     private func scrollDeltaY(from event: CGEvent) -> Int64 {

@@ -41,7 +41,7 @@ final class SettingsWindowController: NSObject, NSWindowDelegate {
         contentView.autoresizingMask = [.width, .height]
 
         let window = NSWindow(
-            contentRect: NSRect(x: 0, y: 0, width: 560, height: 460),
+            contentRect: NSRect(x: 0, y: 0, width: 560, height: 400),
             styleMask: [.titled, .closable, .resizable, .miniaturizable],
             backing: .buffered,
             defer: false
@@ -115,8 +115,7 @@ final class SettingsWindowController: NSObject, NSWindowDelegate {
         let maxHeight = max(300, visible.height - marginY * 2)
 
         let preferredWidth: CGFloat = 560
-        // Always start well below screen height so scrolling is available.
-        let preferredHeight: CGFloat = min(460, visible.height * 0.7)
+        let preferredHeight: CGFloat = min(400, visible.height * 0.55)
         let width = min(preferredWidth, maxWidth)
         let height = min(preferredHeight, maxHeight)
 

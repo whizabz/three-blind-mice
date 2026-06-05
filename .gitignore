@@ -22,3 +22,7 @@ DerivedData/
 .netrc
 *.p12
 *.mobileprovision
+App/DevelopmentTeam.xcconfig
+
+# Local build products (optional stable output path)
+BuildProducts/

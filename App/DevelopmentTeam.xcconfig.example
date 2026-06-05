@@ -1,0 +1,4 @@
+// Copy this file to DevelopmentTeam.xcconfig (same folder) and set your Team ID.
+// Xcode → Three Blind Mice target → Signing & Capabilities → Team
+// The Team ID is the 10-character string in parentheses, e.g. AB12CD34EF
+DEVELOPMENT_TEAM = XXXXXXXXXX

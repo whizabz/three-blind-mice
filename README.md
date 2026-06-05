@@ -4,14 +4,14 @@ macOS menu bar utility that remaps mouse scroll and buttons to keyboard-style na
 
 ## Build and run (Xcode)
 
-Accessibility permission only works reliably when the app has a **bundle identifier**.
+Accessibility permission only works reliably when the app has a **bundle identifier** and is signed with a **Development Team** (free Apple ID works).
 
 1. Open **`ThreeBlindMice.xcodeproj`** in this repo (not `Package.swift` alone).
-2. Select scheme **Three Blind Mice**.
-3. Press **Run**.
-4. In **System Settings → Privacy & Security → Accessibility**, enable **Three Blind Mice**.
-5. **Quit** the app completely (menu bar → Quit), then run again from Xcode.
-6. The menu bar icon should reflect enabled/disabled state (sunglasses).
+2. **One-time setup:** copy `App/DevelopmentTeam.xcconfig.example` to `App/DevelopmentTeam.xcconfig` and replace `XXXXXXXXXX` with your Team ID from **Xcode → Three Blind Mice target → Signing & Capabilities → Team** (the 10-character ID in parentheses). Without this, macOS resets Accessibility permission after every rebuild because ad hoc signatures change each time.
+3. Select scheme **Three Blind Mice**.
+4. Press **Run**.
+5. In **System Settings → Privacy & Security → Accessibility**, enable **Three Blind Mice**.
+6. Rebuilds should keep permission once signing shows **Apple Development** on the Accessibility tab in settings.
 
 If you previously enabled a different entry (e.g. `three-blind-mice-app` or a path under `.build/`), remove those stale entries and enable **Three Blind Mice** only.
 

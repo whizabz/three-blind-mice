@@ -1,0 +1,8 @@
+#include? "DevelopmentTeam.xcconfig"
+
+CODE_SIGN_ENTITLEMENTS = App/ThreeBlindMice.entitlements
+CODE_SIGN_STYLE = Automatic
+ENABLE_HARDENED_RUNTIME = YES
+
+// When DEVELOPMENT_TEAM is set (via DevelopmentTeam.xcconfig), Xcode signs with
+// "Apple Development" and Accessibility permission survives rebuilds.
